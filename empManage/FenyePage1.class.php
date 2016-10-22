@@ -2,6 +2,7 @@
 
 class FenyePage{
     //在empList1.php中制定
+    //需在empList1.php中传递过去的数据：pageSize/pageNow/gotoUrl/
     public $pageSize=10;//程序员制定
     public $pageNow=1;  //页面产生
     public $gotoUrl;    //分页显示的页面
@@ -13,3 +14,4 @@ class FenyePage{
     public $navigate;   //分页导航(上一页、下一页、翻十页、跳转到某一页)
 }
 ?>
+

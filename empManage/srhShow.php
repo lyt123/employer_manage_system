@@ -26,3 +26,4 @@ $emp1=$empService1->getEmpById($id);
 </table>
 <a href="srhEmp1.php">返回查询页面</a>
 </html>
+

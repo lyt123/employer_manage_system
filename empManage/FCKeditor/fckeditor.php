@@ -73,7 +73,7 @@ class FCKeditor
 
 	function CreateHtml()
 	{
-		$HtmlValue = htmlspecialchars( $this->Value ) ;
+		$HtmlValue = htmlspecialchars( $this->Value,ENT_COMPAT | ENT_HTML401,'GB2312' ) ;
 
 		$Html = '' ;
 

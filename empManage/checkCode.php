@@ -2,11 +2,10 @@
 
 session_start();
 $checkCode="";
-
 for($i=0;$i<4;$i++){
 	$checkCode.=dechex(rand(1,15));
 }
-
+//生成验证码存储于session中，后面的代码只是在增加干扰
 $_SESSION["myCheckCode"] =$checkCode;
 
     $img=imagecreatetruecolor(140,30);
@@ -27,12 +26,12 @@ $_SESSION["myCheckCode"] =$checkCode;
         //$randcolor = ImageColorallocate($im,rand(0,255),rand(0,255),rand(0,255));
         //imagesetpixel($im, rand()%70 , rand()%30 , $randcolor);
     }
-	imagestring($img,rand(60,80),rand(2,80),rand(2,10), $_SESSION["myCheckCode"], $white);
+	imagestring($img,rand(60,80),rand(2,80),rand(2,10), $checkCode, $white);
 
 	Header("Content-type: image/png");
-    //输出验证图片 
+    //输出验证图片
     imagepng($img);
-
+    imagedestroy($img);
 
 /*//通知浏览器将要输出PNG图片 
     

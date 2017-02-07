@@ -1,22 +1,26 @@
 <?php
-
 class SqlHelper
 {
-    public $conn;
-    public $host = "localhost";
-    public $dbms = 'mysql';
-    public $dbname = "test";
-    public $username = "root";
-    public $password = "";
-
     public function __construct()
     {
-        $this->conn = new PDO('mysql:host=localhost;dbname=test;charset=utf8mb4',$this->username,$this->password);
+        require 'database/database_setting.php';//much safe
+        $this->conn = new PDO(
+            sprintf(
+                'mysql:host=%s;dbname=%s;port=%s;charset=%s',
+                $setting['host'],
+                $setting['name'],
+                $setting['port'],
+                $setting['charset']
+            ),
+            $setting['username'],
+            $setting['password']
+        );
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function  execute_dql($sql)
+    public function execute_dql($sql)
     {
+//        var_dump($sql);exit();
         return $this->conn->query($sql);
     }
 
@@ -25,11 +29,11 @@ class SqlHelper
         $res = $this->conn->query($sql);
 
         $arr = array();
-        while($row = $res->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
             $arr[] = $row;
         }
 
-        return$arr;
+        return $arr;
     }
 
     public function execute_dml($sql)
@@ -42,14 +46,14 @@ class SqlHelper
         $res = $this->conn->query($sql1);
 
         $arr = array();
-        while($row = $res->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
             $arr[] = $row;
         }
 
         $fenyePage->res_array = $arr;
 
         $res2 = $this->conn->query($sql2);
-        if($row = $res2->fetch(PDO::FETCH_NUM)) {
+        if ($row = $res2->fetch(PDO::FETCH_NUM)) {
             $fenyePage->pageCount = ceil($row[0] / $fenyePage->pageSize);
             $fenyePage->rowCount = $row[0];
         }
@@ -88,13 +92,13 @@ class SqlHelper
         $fenyePage->navigate = $navigate;
     }
 
-   /* public function close_connect()
-    {
+    /* public function close_connect()
+     {
 
-        if (!empty($this->conn)) {
-            mysqli_close($this->conn);
-        }
-    }*/
+         if (!empty($this->conn)) {
+             mysqli_close($this->conn);
+         }
+     }*/
 }
 
 ?>

@@ -3,6 +3,7 @@
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <?php
+	require_once 'composer_tests/whoops_trigger.php';
 	//该页面要显示准备修改的用户的信息.
 	require_once 'EmpService1.class.php';
 	$id=$_GET['id'];

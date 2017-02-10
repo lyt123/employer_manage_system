@@ -12,15 +12,17 @@ $adminService=new AdminService();
 $res=$adminService->userExist($user_input_value);//参数不能加引号，否则出错
 //header('Content-Type:application/json; charset=utf-8');
 if ($res) {
+
+    if(!is_array($res)){
+        echo json_encode([
+            'status' => 20000,
+            'response' => ''
+        ]);
+    }
         if (is_array($res)) {
             echo json_encode([
                 'status' => 20000,
-                'response' => '存在'
-            ]);
-        } else {
-            echo json_encode([
-                'status' => 20000,
-                'response' => 'nice'
+                'response' => 'nicenice'
             ]);
         }
 } else {

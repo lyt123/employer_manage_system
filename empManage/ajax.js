@@ -20,22 +20,22 @@ function ajax(url, fnSucc, fnFaild)
     //4.接收
     oAjax.onreadystatechange=function ()
     {
-        if(oAjax.readyState==4)
-        {
-            if(oAjax.status==200)
-            {
-                //alert('成功了：'+oAjax.responseText);
+        //if(oAjax.readyState==4)
+        //{
+        //    if(oAjax.status==200)
+        //    {
+        //        //alert('成功了：'+oAjax.responseText);
                 fnSucc(oAjax.responseText);
-            }
-            else
-            {
-                //alert('失败了');
-                if(fnFaild)
-                {
-                    fnFaild(oAjax.status);
-                }
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        //alert('失败了');
+        //        if(fnFaild)
+        //        {
+        //            fnFaild(oAjax.status);
+        //        }
+        //    }
+        //}
     };
 }
 

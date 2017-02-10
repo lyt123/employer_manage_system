@@ -55,7 +55,7 @@ class EmpService
     function getEmpById($id)
     {
 
-        try {
+//        try {
             $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             $stmt = $db->prepare("SELECT * FROM emp WHERE id=:id");
             $stmt->execute(array(':id' => $id));
@@ -69,9 +69,13 @@ class EmpService
             $emp->setSalary($arr['salary']);
 
             return $emp;
-        } catch(PDOException $e) {
-            die($e->getMessage());
-        }/*
+//        } catch(PDOException $e) {
+//            $code = $e->getCode();
+//            $message = $e->getMessage();
+//            echo "error code is {$code}, error message is {$message}, the above is the wrong things.";
+//            exit();
+//        }
+        /*
 
         $sql = "select * from emp where id=$id";
         $sqlHelper = new SqlHelper();

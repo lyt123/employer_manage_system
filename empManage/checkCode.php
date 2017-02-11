@@ -1,37 +1,38 @@
 <?php
 
 session_start();
-$checkCode="";
-for($i=0;$i<4;$i++){
-	$checkCode.=dechex(rand(1,15));
+$checkCode = "";
+for ($i = 0; $i < 4; $i++) {
+    $checkCode .= dechex(rand(1, 15));
 }
 //生成验证码存储于session中，后面的代码只是在增加干扰
-$_SESSION["myCheckCode"] =$checkCode;
+$_SESSION["myCheckCode"] = $checkCode;
 
-    $img=imagecreatetruecolor(140,30);
-    $bgcolor=imagecolorallocate($img, 0,0,0);  //RGB黑色标识符
-	imagefill($img,0,0,$bgcolor);
+$img = imagecreatetruecolor(140, 30);
+$bgcolor = imagecolorallocate($img, 0, 0, 0);  //RGB黑色标识符
+imagefill($img, 0, 0, $bgcolor);
 
-    $white=imagecolorallocate($img, 255,255,255); //RGB白色标识符
-    $blue=imagecolorallocate($img, 0,0,255); //RGB白色标识符
-    $red=imagecolorallocate($img, 255,0,0); //RGB白色标识符
-    $green=imagecolorallocate($img, 200,0,0); //RGB灰色标识符
-    //开始作图
-    //imagefill($im,0,0,$gray);
+$white = imagecolorallocate($img, 255, 255, 255); //RGB白色标识符
+$blue = imagecolorallocate($img, 0, 0, 255); //RGB白色标识符
+$red = imagecolorallocate($img, 255, 0, 0); //RGB白色标识符
+$green = imagecolorallocate($img, 200, 0, 0); //RGB灰色标识符
+//开始作图
+//imagefill($im,0,0,$gray);
 
 
 //加入干扰象素
-    for($i=0;$i<20;$i++){
-		imageline($img,rand(0,110),rand(0,30),rand(0,110),rand(0,30),imagecolorallocate($img,rand(0,255),rand(0,255),rand(0,255)));
-        //$randcolor = ImageColorallocate($im,rand(0,255),rand(0,255),rand(0,255));
-        //imagesetpixel($im, rand()%70 , rand()%30 , $randcolor);
-    }
-	imagestring($img,rand(60,80),rand(2,80),rand(2,10), $checkCode, $white);
+for ($i = 0; $i < 20; $i++) {
+    imageline($img, rand(0, 110), rand(0, 30), rand(0, 110), rand(0, 30), imagecolorallocate($img, rand(0, 255), rand(0, 255), rand(0, 255)));
+    //$randcolor = ImageColorallocate($im,rand(0,255),rand(0,255),rand(0,255));
+    //imagesetpixel($im, rand()%70 , rand()%30 , $randcolor);
+}
+imagestring($img, rand(60, 80), rand(2, 80), rand(2, 10), $checkCode, $white);
 
-	Header("Content-type: image/png");
-    //输出验证图片
-    imagepng($img);
-    imagedestroy($img);
+Header("Content-type: image/png");
+//输出验证图片
+imagepng($img);
+imagedestroy($img);
+
 
 /*//通知浏览器将要输出PNG图片 
     

@@ -69,63 +69,63 @@ if (!empty($_REQUEST['flag'])) {
             echo '成功<br/>1秒后跳转回主界面';
             header("Refresh:1,url=http://localhost/emp/empManage/empManage1.php");//这里要用http开头的地址才可以
         }
-    }else if($flag=='sendMail') {
-       /* require_once "email.class.php";
-        //******************** 配置信息 ********************************
-        $smtpserver = "smtp.qq.com";//SMTP服务器
-        $smtpserverport = 25;//SMTP服务器端口
-        $smtpusermail = "1067081452@qq.com";//SMTP服务器的用户邮箱
-        $smtpemailto = $_POST['toemail'];//发送给谁
-        $smtpuser = "1067081452";//SMTP服务器的用户帐号(不用写后缀)
-        $smtppass = "vppuxfvvzxskbehf";//SMTP服务器的用户密码
-        $mailtitle = $_POST['title'];//邮件主题
-        $mailcontent = "<h1>" . $_POST['content'] . "</h1>";//邮件内容
-        $mailtype = "HTML";//邮件格式（HTML/TXT）,TXT为文本邮件
-        $smtp = new smtp($smtpserver, $smtpserverport, true, $smtpuser, $smtppass);//这里面的一个true是表示使用身份验证,否则不使用身份验证.
-        $smtp->debug = true;//是否显示发送的调试信息
-        $state = $smtp->sendmail($smtpemailto, $smtpusermail, $mailtitle, $mailcontent, $mailtype);
-        if ($state == "") {
-            echo "对不起，邮件发送失败！请检查邮箱填写是否有误。";
-            echo "<a href='sendMail.php'>点此返回</a>";
-            exit();
-        } else {
-            echo "恭喜！邮件发送成功！！";
-            echo "<a href='sendMail.php'>点此返回</a>";
-        }*/
-       /* $to = '3310113264@qq.com';
-        $subject = "this is title";
-        $body = "this is body";
-        date_default_timezone_set("America/Detroit");//设定时区东八区
+    } else if ($flag == 'sendMail') {
+        /* require_once "email.class.php";
+         //******************** 配置信息 ********************************
+         $smtpserver = "smtp.qq.com";//SMTP服务器
+         $smtpserverport = 25;//SMTP服务器端口
+         $smtpusermail = "1067081452@qq.com";//SMTP服务器的用户邮箱
+         $smtpemailto = $_POST['toemail'];//发送给谁
+         $smtpuser = "1067081452";//SMTP服务器的用户帐号(不用写后缀)
+         $smtppass = "vppuxfvvzxskbehf";//SMTP服务器的用户密码
+         $mailtitle = $_POST['title'];//邮件主题
+         $mailcontent = "<h1>" . $_POST['content'] . "</h1>";//邮件内容
+         $mailtype = "HTML";//邮件格式（HTML/TXT）,TXT为文本邮件
+         $smtp = new smtp($smtpserver, $smtpserverport, true, $smtpuser, $smtppass);//这里面的一个true是表示使用身份验证,否则不使用身份验证.
+         $smtp->debug = true;//是否显示发送的调试信息
+         $state = $smtp->sendmail($smtpemailto, $smtpusermail, $mailtitle, $mailcontent, $mailtype);
+         if ($state == "") {
+             echo "对不起，邮件发送失败！请检查邮箱填写是否有误。";
+             echo "<a href='sendMail.php'>点此返回</a>";
+             exit();
+         } else {
+             echo "恭喜！邮件发送成功！！";
+             echo "<a href='sendMail.php'>点此返回</a>";
+         }*/
+        /* $to = '3310113264@qq.com';
+         $subject = "this is title";
+         $body = "this is body";
+         date_default_timezone_set("America/Detroit");//设定时区东八区
 
-        $mail             = new PHPMailer(); //new一个PHPMailer对象出来
-        $body             = @eregi_replace("[\]",'',$body); //对邮件内容进行必要的过滤
-        $mail->CharSet ="UTF-8";//设定邮件编码，默认ISO-8859-1，如果发中文此项必须设置，否则乱码
-        $mail->IsSMTP(); // 设定使用SMTP服务
-        $mail->SMTPDebug  = 1;                     // 启用SMTP调试功能
-        // 1 = errors and messages
-        // 2 = messages only
-        $mail->SMTPAuth   = true;                  // 启用 SMTP 验证功能
-//        $mail->SMTPSecure = "ssl";//"ssl";      // 安全协议,163用ssl,hotmail gmail用tls.
-        $mail->Host       = "smtp.163.com";      // SMTP 服务器
-        $mail->Port       = 25;//25,465,587;                   // SMTP服务器的端口号
-        $mail->Username   = "ajudbfef@163.com";  // SMTP服务器用户名
-        $mail->Password   = "1067081452";            // SMTP服务器密码
+         $mail             = new PHPMailer(); //new一个PHPMailer对象出来
+         $body             = @eregi_replace("[\]",'',$body); //对邮件内容进行必要的过滤
+         $mail->CharSet ="UTF-8";//设定邮件编码，默认ISO-8859-1，如果发中文此项必须设置，否则乱码
+         $mail->IsSMTP(); // 设定使用SMTP服务
+         $mail->SMTPDebug  = 1;                     // 启用SMTP调试功能
+         // 1 = errors and messages
+         // 2 = messages only
+         $mail->SMTPAuth   = true;                  // 启用 SMTP 验证功能
+ //        $mail->SMTPSecure = "ssl";//"ssl";      // 安全协议,163用ssl,hotmail gmail用tls.
+         $mail->Host       = "smtp.163.com";      // SMTP 服务器
+         $mail->Port       = 25;//25,465,587;                   // SMTP服务器的端口号
+         $mail->Username   = "ajudbfef@163.com";  // SMTP服务器用户名
+         $mail->Password   = "1067081452";            // SMTP服务器密码
 
-        $mail->SetFrom('adudbfef@163.com', 'lyt');//发送邮件的邮箱和用户名
-        $mail->AddReplyTo("myMail@hotmail.com","Zhixiong");//没啥用
-        $mail->Subject    = $subject;  //邮件题目
-        $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-        $mail->MsgHTML($body);  //邮件内容
-        $address = $to;     //收件人地址
-        $mail->AddAddress($address, "Dear User");
+         $mail->SetFrom('adudbfef@163.com', 'lyt');//发送邮件的邮箱和用户名
+         $mail->AddReplyTo("myMail@hotmail.com","Zhixiong");//没啥用
+         $mail->Subject    = $subject;  //邮件题目
+         $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+         $mail->MsgHTML($body);  //邮件内容
+         $address = $to;     //收件人地址
+         $mail->AddAddress($address, "Dear User");
 
-        //$mail->AddAttachment("images/phpmailer.gif");      // attachment
-        //$mail->AddAttachment("images/phpmailer_mini.gif"); // attachment
-        if(!$mail->Send()) {
-            var_dump( "Mailer Error: " . $mail->ErrorInfo); //调用错误提示.
-        } else {
-            ;//echo "Message sent successfully！";//你不想在页面中出现这句吧.
-        }*/
+         //$mail->AddAttachment("images/phpmailer.gif");      // attachment
+         //$mail->AddAttachment("images/phpmailer_mini.gif"); // attachment
+         if(!$mail->Send()) {
+             var_dump( "Mailer Error: " . $mail->ErrorInfo); //调用错误提示.
+         } else {
+             ;//echo "Message sent successfully！";//你不想在页面中出现这句吧.
+         }*/
         $to_email = $_POST['toemail'];
         $title = $_POST['title'];
         $content = $_POST['content'];
@@ -149,7 +149,7 @@ if (!empty($_REQUEST['flag'])) {
         $mail->Body = $content;
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-        if(!$mail->send()) {
+        if (!$mail->send()) {
             echo 'Message could not be sent.';
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         } else {

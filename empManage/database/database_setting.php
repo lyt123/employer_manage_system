@@ -5,6 +5,6 @@ $setting = [
     'port' => '3306',
     'name' => "test",
     'username' => "root",
-    'password' => 'wuguihong+linyutang',
+    'password' => '',
     'charset' => 'utf8'
 ];

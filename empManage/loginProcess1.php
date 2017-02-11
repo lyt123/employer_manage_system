@@ -22,7 +22,8 @@ if (empty($_POST['keep'])) {
 }
 $adminService = new AdminService();
 $name = $adminService->chekcAdimn($id, $password);
-if ($name != "") {
+if ($name != "")
+{
     session_start();
     $_SESSION['loginUser'] = $name;//非法进入empManage1.php时验证
     header("Location: empManage1.php?name=$name");

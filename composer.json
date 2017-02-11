@@ -1,5 +1,6 @@
 {
   "require" : {
-    "filp/whoops":"~1.0"
+    "filp/whoops":"~1.0",
+    "spryker/code-sniffer": "^0.7.2"
   }
 }
